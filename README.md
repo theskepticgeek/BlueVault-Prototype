@@ -56,25 +56,25 @@ npx hardhat test
 
     Note: Hardhat must be properly set up in the main directory as the backend depends on the compiled contracts and ABI files for NFT minting functionality.
 ### 4. Environment Configuration
-#### Create a ```.env``` file in the root directory with the following variables:
+#### Create a ```.env``` file in the root directory with your own API Keys:
 ```bash
 # Privy Authentication
 VITE_PRIVY_APP_ID=cmfp4249000n3i70cruuuvhuk
 
 # Pinata IPFS Configuration
-VITE_PINATA_API_KEY=f426b80f112b28bbc560
-VITE_PINATA_SECRET_API_KEY=3fa610b30b3cb94f2881552ee1663393084fbf515d0028ee83f1cf15a583cdd9
-VITE_PINATA_JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJmNDQ4NjBhMy0zNjVjLTQ1OGUtOTJkMC1iZDYyNDNhOTM2YmQiLCJlbWFpbCI6ImtycmlzaGR1YmV5MTJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjEsImlkIjoiRlJBMSJ9LHsiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjEsImlkIjoiTllDMSJ9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImY0MjZiODBmMTEyYjI4YmJjNTYwIiwic2NvcGVkS2V5U2VjcmV0IjoiM2ZhNjEwYjMwYjNjYjk0ZjI4ODE1NTJlZTE2NjMzOTMwODRmYmY1MTVkMDAyOGVlODNmMWNmMTVhNTgzY2RkOSIsImV4cCI6MTc4OTcyODc5MH0.mT1JEd2KNR2sPFG-JmmKqDd6VhcEj6CiZeFWTx4M5xI
+VITE_PINATA_API_KEY=
+VITE_PINATA_SECRET_API_KEY=
+VITE_PINATA_JWT=
 
 # Blockchain Configuration
-PRIVATE_KEY=12732428ea31d44376e42f2a3d415384b0abea8890e9e04e8c0a5462a5336f5b
-ALCHEMY_API_KEY=hZRaxfyC0E-BtOnqbNBm4
-POLYGON_AMOY_RPC_URL=https://rpc-amoy.polygon.technology
+PRIVATE_KEY=
+ALCHEMY_API_KEY=
+POLYGON_AMOY_RPC_URL=
 
 # Test Configuration
-RECIPIENT=0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-AMOUNT=100
-IPFS_HASH=bafkreidose72muwo275ggwordhi6yx2uootwty6onxphes2jp3i3bhes5q
+RECIPIENT=
+AMOUNT=
+IPFS_HASH=
 ```
 
 ## Running the Application
