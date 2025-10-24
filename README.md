@@ -151,19 +151,19 @@ export default defineConfig({
 ```
 
 ## Verification Checklist
-###     All dependencies installed (npm install completed without errors)
+##### All dependencies installed (npm install completed without errors)
 
-### Hardhat compiled successfully (npx hardhat compile)
+##### Hardhat compiled successfully (npx hardhat compile)
 
-### Environment variables set in .env file
+##### Environment variables set in .env file
 
-### Frontend server running (check terminal for actual port)
+##### Frontend server running (check terminal for actual port)
 
-### Backend server running (check terminal for actual port)
+##### Backend server running (check terminal for actual port)
 
-### MetaMask connected to Polygon Amoy testnet
+##### MetaMask connected to Polygon Amoy testnet
 
-### Test MATIC available in wallet
+##### Test MATIC available in wallet
 
-### No port conflicts between frontend and backend
+##### No port conflicts between frontend and backend
 
