@@ -52,4 +52,7 @@ npx hardhat compile
 
 # Run tests to verify everything works
 npx hardhat test
+
 ```
+
+    Note: Hardhat must be properly set up in the main directory as the backend depends on the compiled contracts and ABI files for NFT minting functionality.
