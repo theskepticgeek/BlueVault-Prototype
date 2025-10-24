@@ -57,7 +57,7 @@ npx hardhat test
 
     Note: Hardhat must be properly set up in the main directory as the backend depends on the compiled contracts and ABI files for NFT minting functionality.
 ### 4. Environment Configuration
-#### Create a ```.env ``` file in the root directory with the following variables:
+#### Create a ```.env``` file in the root directory with the following variables:
 ```bash
 # Privy Authentication
 VITE_PRIVY_APP_ID=cmfp4249000n3i70cruuuvhuk
@@ -77,3 +77,20 @@ RECIPIENT=0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 AMOUNT=100
 IPFS_HASH=bafkreidose72muwo275ggwordhi6yx2uootwty6onxphes2jp3i3bhes5q
 ```
+
+## Running the Application
+### You need to run two servers simultaneously:
+### Terminal 1 - Frontend (Root Directory)
+```bash
+# From the main project directory
+npm run dev
+```
+### Terminal 2 - Backend Server
+```bash
+# Navigate to backend directory
+cd backend
+
+# Start the backend server
+node server.cjs
+```
+#### Backend API will be available at: ```http://localhost:3001```
