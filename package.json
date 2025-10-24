@@ -56,5 +56,16 @@
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theskepticgeek/BlueVault-Prototype.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theskepticgeek/BlueVault-Prototype/issues"
+  },
+  "homepage": "https://github.com/theskepticgeek/BlueVault-Prototype#readme"
 }

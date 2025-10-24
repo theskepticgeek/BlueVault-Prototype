@@ -7,14 +7,33 @@ const fs = require('fs');
 
 const execAsync = promisify(exec);
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// Absolute path to the project root (where package.json is)
-const PROJECT_ROOT = '/home/theskepticgeek/BlueVaultFrontend/my-app';
+// Use relative path instead of absolute path
+// On Render, your backend is deployed from the 'backend' directory
+const PROJECT_ROOT = path.join(__dirname, '..'); // Go up one level to project root
+
+// Test endpoint to check file structure
+app.get('/api/debug', (req, res) => {
+  try {
+    const files = fs.readdirSync(PROJECT_ROOT);
+    const backendFiles = fs.readdirSync(__dirname);
+    res.json({
+      projectRoot: PROJECT_ROOT,
+      projectFiles: files,
+      backendFiles: backendFiles,
+      dirname: __dirname,
+      hasHardhatConfig: fs.existsSync(path.join(PROJECT_ROOT, 'hardhat.config.js')),
+      hasScripts: fs.existsSync(path.join(PROJECT_ROOT, 'scripts'))
+    });
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+});
 
 // Mint endpoint
 app.post('/api/mint', async (req, res) => {
@@ -29,12 +48,29 @@ app.post('/api/mint', async (req, res) => {
 
     console.log('Minting request:', { recipient, amount, ipfsHash });
 
-    // Use the EXACT SAME command that worked manually
-    const command = `cd "${PROJECT_ROOT}" && RECIPIENT=${recipient} AMOUNT=${amount} IPFS_HASH=${ipfsHash} npx hardhat run scripts/mint.cjs --network polygon_amoy`;
+    // Use environment variables for sensitive data
+    const envVars = {
+      RECIPIENT: recipient,
+      AMOUNT: amount,
+      IPFS_HASH: ipfsHash,
+      PRIVATE_KEY: process.env.PRIVATE_KEY,
+      ALCHEMY_API_KEY: process.env.ALCHEMY_API_KEY,
+      POLYGON_AMOY_RPC_URL: process.env.POLYGON_AMOY_RPC_URL
+    };
+
+    // Set environment variables for the command
+    const envString = Object.entries(envVars)
+      .map(([key, value]) => `${key}=${value}`)
+      .join(' ');
+
+    const command = `cd "${PROJECT_ROOT}" && ${envString} npx hardhat run scripts/mint.cjs --network polygon_amoy`;
     
-    console.log('Executing command:', command);
+    console.log('Executing command in directory:', PROJECT_ROOT);
     
-    const { stdout, stderr } = await execAsync(command);
+    const { stdout, stderr } = await execAsync(command, { 
+      cwd: PROJECT_ROOT,
+      timeout: 60000 // 60 second timeout
+    });
 
     console.log('Mint script stdout:', stdout);
     if (stderr) console.log('Mint script stderr:', stderr);
@@ -72,10 +108,28 @@ app.post('/api/mint', async (req, res) => {
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Backend server is running' });
+  res.json({ 
+    status: 'OK', 
+    message: 'Backend server is running',
+    port: PORT,
+    nodeEnv: process.env.NODE_ENV
+  });
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'BlueVault Backend API',
+    endpoints: {
+      health: '/api/health',
+      mint: '/api/mint (POST)',
+      debug: '/api/debug'
+    }
+  });
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Backend server running on http://localhost:${PORT}`);
+  console.log(`✅ Backend server running on port ${PORT}`);
   console.log(`Project root: ${PROJECT_ROOT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
