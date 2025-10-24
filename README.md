@@ -19,3 +19,11 @@ A decentralized application for secure document storage and NFT minting on Polyg
 node --version    # Should be 18.x or higher
 npm --version     # Should be 9.x or higher
 git --version
+
+## 📥 Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/theskepticgeek/BlueVault-Prototype.git
+cd BlueVault-Prototype
