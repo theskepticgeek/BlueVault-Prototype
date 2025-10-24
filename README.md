@@ -94,7 +94,7 @@ node server.cjs
 ```
 #### Backend API will be available at: ```http://localhost:3001```
 
-## TroubleshootingBackend API will be available at: http://localhost:3001
+## Troubleshooting
 ### Common Issues:
 #### 1. Hardhat Compilation Error:
 ```bash
