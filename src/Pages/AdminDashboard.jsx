@@ -55,8 +55,9 @@ const handleApprove = async () => {
     const recipientWallet = '0x6c3aa30bdd2dE5383f8aF12CA3B3bEb8a9A2F255';
   
 
-    // 3) Mint BVT tokens with IPFS CID stored on-chain
-    const mintResponse = await fetch('http://localhost:3001/api/mint', {
+ // 3) Mint BVT tokens with IPFS CID stored on-chain
+const API_BASE_URL = 'https://bluevault-prototype.onrender.com';
+const mintResponse = await fetch(`${API_BASE_URL}/api/mint`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
