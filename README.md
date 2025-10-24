@@ -59,7 +59,7 @@ npx hardhat test
 #### Create a ```.env``` file in the root directory with your own API Keys:
 ```bash
 # Privy Authentication
-VITE_PRIVY_APP_ID=cmfp4249000n3i70cruuuvhuk
+VITE_PRIVY_APP_ID=
 
 # Pinata IPFS Configuration
 VITE_PINATA_API_KEY=
