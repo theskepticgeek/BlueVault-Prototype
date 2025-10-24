@@ -1,12 +1,11 @@
 # Blue Vault Prototype
 
-A decentralized application for secure document storage and NFT minting on Polygon blockchain.
+A decentralized application for secure document storage and carbon tokens minting on Polygon blockchain.
 
 ![Blockchain](https://img.shields.io/badge/Blockchain-Polygon-blue)
-![NFT](https://img.shields.io/badge/NFT-Minting-green)
 ![IPFS](https://img.shields.io/badge/IPFS-Storage-orange)
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -21,7 +20,7 @@ npm --version     # Should be 9.x or higher
 git --version
 ```
 
-## 📥 Installation
+## Installation
 
 ### 1. Clone the Repository
 
@@ -94,3 +93,77 @@ cd backend
 node server.cjs
 ```
 #### Backend API will be available at: ```http://localhost:3001```
+
+## TroubleshootingBackend API will be available at: http://localhost:3001
+### Common Issues:
+#### 1. Hardhat Compilation Error:
+```bash
+# Clear cache and recompile
+npx hardhat clean
+npx hardhat compile
+```
+#### 2. Dependency Issues:
+```bash
+# Clear and reinstall
+rm -rf node_modules package-lock.json
+npm install
+npm install @privy-io/react-auth@latest
+```
+#### 3. Port Conflicts
+##### Step 1: Kill all ports
+```bash
+# Kill processes on commonly used ports
+npx kill-port 5173  # Vite frontend
+npx kill-port 3001  # Backend API
+npx kill-port 8545  # Hardhat node
+npx kill-port 3000  # Alternative frontend port
+```
+##### Step 2: After killing ports, restart the servers:
+###### Terminal 1:
+```bash
+# Terminal 1 - Restart frontend
+npm run dev
+```
+###### Terminal 2:
+```bash
+# Terminal 2 - Restart backend
+cd backend
+node server.cjs
+```
+##### Step 3: Change Vite Port Configuration:
+###### Option 1: Command line flag
+```bash
+npm run dev -- --port 3000
+```
+###### Option 2: Update vite.config.js
+```javascript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,  // Change to port 3000
+    host: true   // Optional: allows external access
+  }
+})
+```
+
+## Verification Checklist
+###     All dependencies installed (npm install completed without errors)
+
+### Hardhat compiled successfully (npx hardhat compile)
+
+### Environment variables set in .env file
+
+### Frontend server running (check terminal for actual port)
+
+### Backend server running (check terminal for actual port)
+
+### MetaMask connected to Polygon Amoy testnet
+
+### Test MATIC available in wallet
+
+### No port conflicts between frontend and backend
+
